@@ -6,7 +6,7 @@
       <option ng-repeat="customer in customers track by $index" value="{{customer._id}}">{{customer.name}}</option>
     </select>
     <br>
-    Order <input type="number" value="1" ng-model="neworder.quanity">
+    Order <input type="number" value="1" min="1" ng-model="neworder.quantity">
     <select ng-model="neworder.product">
       <option ng-repeat="product in products track by $index" value="{{product._id}}">{{product.name}}</option>
     </select>

@@ -25,7 +25,7 @@ function OrdersController(){
         var order = new Order({
           _customer: req.body.customer, 
           _product: req.body.product, 
-          quanity: req.body.quanity, 
+          quantity: req.body.quantity, 
           customer: customer.name,
           product: product.name
         });
