@@ -1,4 +1,4 @@
-<div class="container" ng-controller = "customersController">
+<div class="container" ng-controller = "dashboardController">
   <div class="row">
     <div class="col-md-3">
       <input type="search" placeholder="search">
@@ -6,53 +6,23 @@
     </div>
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-2">          
-          <img src="http://placehold.it/100x100">
-          <p>Nike Shoes</p>
-          <p>(20 left)</p>
-        </div>
-        <div class="col-md-2">          
-          <img src="http://placehold.it/100x100">
-          <p>Nike Shoes</p>
-          <p>(20 left)</p>
-        </div>
-        <div class="col-md-2">          
-          <img src="http://placehold.it/100x100">
-          <p>Nike Shoes</p>
-          <p>(20 left)</p>
-        </div>
-        <div class="col-md-2">          
-          <img src="http://placehold.it/100x100">
-          <p>Nike Shoes</p>
-          <p>(20 left)</p>
-        </div>
-        <div class="col-md-2">          
-          <img src="http://placehold.it/100x100">
-          <p>Nike Shoes</p>
-          <p>(20 left)</p>
+        <div class="col-md-2" ng-repeat="product in products track by $index">
+          <img ng-src="{{product.imageurl}}">
+          <p>{{product.name}}</p>
+          <p>({{product.quantity}} left)</p>
         </div>
       </div>
       <div class="row" style="text-align:center"><a href="">show more...</a></div>
       <div class="row">
         <h3>Recent Orders</h3>
-        <p>Michael purchased 2 Nike Shoes... (3 hours ago)</p>
-        <p>Michael purchased 2 Nike Shoes... (3 hours ago)</p>
-        <p>Michael purchased 2 Nike Shoes... (3 hours ago)</p>
+        <p ng-repeat="order in orders track by $index">{{order.customer}} purchased {{order.quanity}} {{order.product}}... (3 hours ago)</p>
       </div>
       <div class="row" style="text-align:center"><a href="">show all orders...</a></div>
       <div class="row">
         <h3>New Customers</h3>
-        <div class="row">
+        <div class="row" ng-repeat="customer in customers track by $index">
           <img src="http://placehold.it/25x25">
-          <span>Trey Villafane joined the store. (5 days ago)</span>
-        </div>
-        <div class="row">
-          <img src="http://placehold.it/25x25">
-          <span>Trey Villafane joined the store. (5 days ago)</span>
-        </div>
-        <div class="row">
-          <img src="http://placehold.it/25x25">
-          <span>Trey Villafane joined the store. (5 days ago)</span>
+          <span>{{customer.name}} joined the store. (5 days ago)</span>
         </div>
       </div>
       <div class="row" style="text-align:center"><a href="">show all customers...</a></div>

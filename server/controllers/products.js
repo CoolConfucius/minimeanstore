@@ -16,7 +16,7 @@ function ProductsController(){
       description: req.body.description, 
       // imageurl: req.body.imageurl, 
       imageurl: 'http://placehold.it/100x100',
-      quanity: req.body.quanity 
+      quantity: req.body.quantity 
     });
     product.save(function(err, product){
       if(err){

@@ -83,3 +83,23 @@ app.controller('ordersController', ['$scope', '$location', 'customersFactory', '
   }  
 
 }])
+
+
+
+app.controller('dashboardController', ['$scope', '$location', 'customersFactory', 'productsFactory', 'ordersFactory', function($scope, $location, customersFactory, productsFactory, ordersFactory){
+  console.log("dashboardController");
+  $scope.customers = [];
+  $scope.products = []; 
+  $scope.orders = []; 
+  
+  customersFactory.index(function(data){
+    $scope.customers = data; 
+  })
+  productsFactory.index(function(data){
+    $scope.products = data; 
+  })
+  ordersFactory.index(function(data){
+    $scope.orders = data; 
+  })
+
+}])
