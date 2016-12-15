@@ -129,3 +129,70 @@ app.factory('productsFactory', ['$http', function($http){
   // console.log(new ProductsFactory());
   return new ProductsFactory();
 }])
+
+
+
+
+app.factory('ordersFactory', ['$http', function($http){
+  var orders = []; 
+  var order = {}; 
+  function OrdersFactory(){
+    var _this = this;
+    this.create = function(neworder,callback){
+      $http.post('/orders', neworder).then(function(returned_data){
+        console.log("returned_data: ", returned_data.data);
+        if (typeof(callback) == 'function'){
+          callback(returned_data.data);
+        }
+      });
+    };
+    this.update = function(id, editorder, callback){ 
+      $http.put(`/orders/${id}`, editorder).then(function(data){
+        console.log(data);
+        if (typeof(callback) == 'function'){
+          callback(data.data);
+        }
+      })
+    };
+    this.index = function(callback){
+      $http.get('/orders').then(function(returned_data){
+        console.log(returned_data.data);
+        orders = returned_data.data;
+        callback(orders);
+      });
+   //Note: this can be shortened to $http.get('/orders').then(callback); 
+   //But only if you only want to run the callback from the controller.
+    };
+    this.delete = function(id, callback){
+      console.log("id: ", id);
+      $http.delete(`/orders/${id}`).then(function(data){
+        // for (var i = orders.length - 1; i >= 0; i--) {
+        //   if(orders[i]._id === id){
+        //     orders.splice(i, 1);
+        //     break; 
+        //   }    
+        // };
+        console.log("data", data);
+        if (typeof(callback) == 'function'){
+          callback(data);
+        } 
+      })
+    };
+    this.show = function(id, callback){
+      $http.get(`/orders/${id}`).then(function(data){
+        console.log("show data: ", data);
+        // order = data; 
+        callback(data.data); 
+      })
+    };
+    // Sometimes you might not want to make a DB call, and just get the information stored in the factory.
+    this.getOrders = function(callback){
+      callback(orders);
+    };
+    this.getOrder = function(callback){
+        callback(order);
+    };
+  }
+  // console.log(new OrdersFactory());
+  return new OrdersFactory();
+}])

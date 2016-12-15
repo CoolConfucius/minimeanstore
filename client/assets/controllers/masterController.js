@@ -42,7 +42,7 @@ app.controller('productsController', ['$scope', '$location', 'productsFactory', 
     console.log("addproduct");
     productsFactory.create($scope.newproduct, function(newproduct){
       $scope.products.push(newproduct);
-      $scope.newproduct = {}
+      $scope.newproduct = {};
     })
   }
 
@@ -57,8 +57,17 @@ app.controller('productsController', ['$scope', '$location', 'productsFactory', 
 
 }])
 
-app.controller('ordersController', ['$scope', '$location', function($scope, $location){
+app.controller('ordersController', ['$scope', '$location', 'customersFactory', 'productsFactory', 'ordersFactory', function($scope, $location, customersFactory, productsFactory, ordersFactory){
   console.log("ordersController");
+  $scope.customers = [];
+  $scope.products = []; 
+  customersFactory.index(function(data){
+    $scope.customers = data; 
+  })
+  productsFactory.index(function(data){
+    $scope.products = data; 
+  })
+
   $scope.orders = [
     {
       customername: "Michael Choi", 
@@ -85,21 +94,9 @@ app.controller('ordersController', ['$scope', '$location', function($scope, $loc
       date: "April 3rd 2014"
     }
   ]; 
-}])
 
-// app.controller('newController', ['$scope', '$location', 'customersFactory', function($scope, $location, customersFactory){
-//   console.log("newController");
-//   $scope.newcustomer = {
-//     firstname: '', lastname: '', birthday: ''
-//   }
-//   $scope.addcustomer = function(){
-//     console.log("addcustomer");
-//     customersFactory.create($scope.newcustomer, function(){
-//       // $scope.customers.push($scope.newcustomer);
-//       // $scope.newcustomer = {
-//       //   firstname: '', lastname: '', birthday: ''
-//       // }
-//       $location.url('/');
-//     })
-//   }
-// }])
+  ordersFactory.index(function(data){
+    $scope.orders = data; 
+  })
+
+}])

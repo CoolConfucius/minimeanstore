@@ -3,15 +3,15 @@
   <form action="">
     Customer 
     <select>
-      <option>Michael Choi</option>
+      <option ng-repeat="customer in customers">{{customer.name}}</option>
     </select>
     <br>
     Order <input type="number" value="1">
     <select>
-      <option>Nike Shoes</option>
+      <option ng-repeat="product in products">{{product.name}}</option>
     </select>
     <br>
-    <button class="btn-primary" ng-click="addfriend()">Order</button>
+    <button class="btn-primary" ng-click="addorder()">Order</button>
   </form>
   <input type="search" placeholder="filter...">
   <table ng-show="orders.length > 0">

@@ -14,16 +14,4 @@ app.config(function($routeProvider){
   .when('/orders', {
     templateUrl: 'partials/orders.html'
   })
-
-
-  .when('/new', {
-    templateUrl: 'partials/new.html'
-  })
-  .when('/show/:id', {
-    templateUrl: 'partials/show.html'
-  })
-  .when('/edit/:id', {
-    templateUrl: 'partials/edit.html'
-  })
-
 })

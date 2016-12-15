@@ -12,7 +12,11 @@ function ProductsController(){
   this.create = function(req, res){
     console.log(req.body);
     var product = new Product({
-      name: req.body.name
+      name: req.body.name, 
+      description: req.body.description, 
+      // imageurl: req.body.imageurl, 
+      imageurl: 'http://placehold.it/100x100',
+      quanity: req.body.quanity 
     });
     product.save(function(err, product){
       if(err){

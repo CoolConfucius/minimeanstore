@@ -1,6 +1,7 @@
 console.log('future routes');
 var customers = require('./../controllers/customers.js');
 var products = require('./../controllers/products.js');
+var orders = require('./../controllers/orders.js');
 
 module.exports = function(app){
   app.get('/customers', customers.index)
@@ -14,4 +15,10 @@ module.exports = function(app){
   app.post('/products', products.create)
   app.put('/products/:id', products.update)
   app.delete('/products/:id', products.delete)
+
+  app.get('/orders', orders.index)
+  app.get('/orders/:id', orders.show)
+  app.post('/orders', orders.create)
+  app.put('/orders/:id', orders.update)
+  app.delete('/orders/:id', orders.delete)
 }
