@@ -1,10 +1,10 @@
 console.log('future routes');
-var friends = require('./../controllers/friends.js');
+var customers = require('./../controllers/customers.js');
 
 module.exports = function(app){
-  app.get('/friends', friends.index)
-  app.get('/friends/:id', friends.show)
-  app.post('/friends', friends.create)
-  app.put('/friends/:id', friends.update)
-  app.delete('/friends/:id', friends.delete)
+  app.get('/customers', customers.index)
+  app.get('/customers/:id', customers.show)
+  app.post('/customers', customers.create)
+  app.put('/customers/:id', customers.update)
+  app.delete('/customers/:id', customers.delete)
 }

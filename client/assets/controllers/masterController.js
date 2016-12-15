@@ -4,6 +4,7 @@ var app = angular.module('app');
 
 app.controller('customersController', ['$scope', '$location', function($scope, $location){
   console.log("customersController");
+  $scope.newcustomer = {};
   $scope.customers = [
     {
       name: "Michael Choi"
@@ -17,7 +18,20 @@ app.controller('customersController', ['$scope', '$location', function($scope, $
     {
       name: "Michael Choi"
     }
-  ]; 
+  ];
+
+  customersFactory.index(function(data){
+    $scope.customers = data; 
+  })
+  $scope.addcustomer = function(){
+    console.log("addcustomer");
+    customersFactory.create($scope.newcustomer, function(){
+      // $scope.customers.push($scope.newcustomer);
+      $scope.newcustomer = {}
+    })
+  }
+
+
 }])
 
 app.controller('ordersController', ['$scope', '$location', function($scope, $location){
@@ -50,16 +64,16 @@ app.controller('ordersController', ['$scope', '$location', function($scope, $loc
   ]; 
 }])
 
-// app.controller('newController', ['$scope', '$location', 'friendsFactory', function($scope, $location, friendsFactory){
+// app.controller('newController', ['$scope', '$location', 'customersFactory', function($scope, $location, customersFactory){
 //   console.log("newController");
-//   $scope.newfriend = {
+//   $scope.newcustomer = {
 //     firstname: '', lastname: '', birthday: ''
 //   }
-//   $scope.addfriend = function(){
-//     console.log("addfriend");
-//     friendsFactory.create($scope.newfriend, function(){
-//       // $scope.friends.push($scope.newfriend);
-//       // $scope.newfriend = {
+//   $scope.addcustomer = function(){
+//     console.log("addcustomer");
+//     customersFactory.create($scope.newcustomer, function(){
+//       // $scope.customers.push($scope.newcustomer);
+//       // $scope.newcustomer = {
 //       //   firstname: '', lastname: '', birthday: ''
 //       // }
 //       $location.url('/');
