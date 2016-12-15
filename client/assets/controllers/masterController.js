@@ -68,35 +68,18 @@ app.controller('ordersController', ['$scope', '$location', 'customersFactory', '
     $scope.products = data; 
   })
 
-  $scope.orders = [
-    {
-      customername: "Michael Choi", 
-      product: "Nike",
-      quantity: 2,
-      date: "April 3rd 2014"
-    },
-    {
-      customername: "Michael Choi", 
-      product: "Nike",
-      quantity: 2,
-      date: "April 3rd 2014"
-    },
-    {
-      customername: "Michael Choi", 
-      product: "Nike",
-      quantity: 2,
-      date: "April 3rd 2014"
-    },
-    {
-      customername: "Michael Choi", 
-      product: "Nike",
-      quantity: 2,
-      date: "April 3rd 2014"
-    }
-  ]; 
+  $scope.orders = []; 
 
   ordersFactory.index(function(data){
     $scope.orders = data; 
   })
+
+  $scope.addorder = function(){
+    console.log("addorder ", $scope.neworder);
+    ordersFactory.create($scope.neworder, function(neworder){
+      $scope.orders.push(neworder);
+      $scope.neworder = {};
+    })
+  }  
 
 }])

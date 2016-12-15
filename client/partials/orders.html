@@ -2,18 +2,19 @@
   <h3>Add a new order</h3>
   <form action="">
     Customer 
-    <select>
-      <option ng-repeat="customer in customers">{{customer.name}}</option>
+    <select ng-model="neworder.customer">
+      <option ng-repeat="customer in customers track by $index" value="{{customer._id}}">{{customer.name}}</option>
     </select>
     <br>
-    Order <input type="number" value="1">
-    <select>
-      <option ng-repeat="product in products">{{product.name}}</option>
+    Order <input type="number" value="1" ng-model="neworder.quanity">
+    <select ng-model="neworder.product">
+      <option ng-repeat="product in products track by $index" value="{{product._id}}">{{product.name}}</option>
     </select>
     <br>
     <button class="btn-primary" ng-click="addorder()">Order</button>
   </form>
   <input type="search" placeholder="filter...">
+  {{orders}}
   <table ng-show="orders.length > 0">
     <thead>
       <th>#</th>
@@ -25,7 +26,7 @@
     <tbody>
       <tr ng-repeat="order in orders track by $index">
         <td>{{$index}}</td>
-        <td>{{order.customername}}</td>
+        <td>{{order.customer}}</td>
         <td>{{order.product}}</td>
         <td>{{order.quantity}}</td>
         <td>{{order.date}}</td>

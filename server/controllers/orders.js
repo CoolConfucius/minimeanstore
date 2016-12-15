@@ -2,8 +2,8 @@ console.log('orders controller');
 
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
-// var Cutomer = mongoose.model('Cutomer');
-// var Product = mongoose.model('Product');
+var Customer = mongoose.model('Customer');
+var Product = mongoose.model('Product');
 
 function OrdersController(){
   this.index = function(req, res){
@@ -14,22 +14,38 @@ function OrdersController(){
     })
   };
   this.create = function(req, res){
-    console.log(req.body);
-    var order = new Order({
-      _customer: req.body._customer, 
-      _product: req.body._product, 
-      quanity: req.body.quanity 
-    });
-    order.save(function(err, order){
-      if(err){
-        console.log(err);
-        console.log('create method saving order');
-      } else {
-        console.log('successfully added a order!');
-        console.log(order);
-        res.json(order);
-      }
+    console.log("orders create: ", req.body);
+    Customer.findOne({_id: req.body.customer}, function(err, customer){
+      if (err || !customer) { console.log("customer find one err or not found, ", err);}
+      console.log("customer : ", customer);
+      Product.findOne({_id: req.body.product}, function(err, product){
+        if (err || !product) { console.log("product find one err or not found, ", err);}
+        console.log("product : ", product);
+        
+        var order = new Order({
+          _customer: req.body.customer, 
+          _product: req.body.product, 
+          quanity: req.body.quanity, 
+          customer: customer.name,
+          product: product.name
+        });
+        order.save(function(err, order){
+          if(err){
+            console.log(err);
+            console.log('create method saving order');
+          } else {
+            console.log('successfully added a order!');
+            
+            console.log(order);
+            res.json(order);
+          }
+        })
+
+      })
     })
+
+
+
   };
   this.update = function(req, res){
     var editorder = {
