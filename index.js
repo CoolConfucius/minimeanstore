@@ -1,6 +1,5 @@
 console.log('indexjs');
-var mongoose  = require('mongoose'),
-    express   = require('express'),
+var express   = require('express'),
     bp        = require('body-parser'),
     path      = require('path'),
     root      = __dirname,
