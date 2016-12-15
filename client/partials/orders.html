@@ -14,7 +14,7 @@
     <button class="btn-primary" ng-click="addfriend()">Order</button>
   </form>
   <input type="search" placeholder="filter...">
-  <table ng-show="friends.length > 0">
+  <table ng-show="orders.length > 0">
     <thead>
       <th>#</th>
       <th>Customer Name</th>
@@ -23,12 +23,12 @@
       <th>Date</th>
     </thead>
     <tbody>
-      <tr ng-repeat="friend in friends track by $index">
+      <tr ng-repeat="order in orders track by $index">
         <td>{{$index}}</td>
-        <td>{{friend.firstname}} {{friend.lastname}}</td>
-        <td><button ng-click="showfriend($index)">show</button></td>
-        <td><button ng-click="editfriend($index)">edit</button></td>
-        <td><button ng-click="deletefriend($index)">delete</button></td>
+        <td>{{order.customername}}</td>
+        <td>{{order.product}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.date}}</td>
       </tr>
     </tbody>
   </table>
