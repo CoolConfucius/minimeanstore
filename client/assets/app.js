@@ -5,7 +5,9 @@ app.config(function($routeProvider){
   .when('/', {
     templateUrl: 'partials/dashboard.html'
   })
-
+  .when('/orders', {
+    templateUrl: 'partials/orders.html'
+  })
 
 
   .when('/new', {

@@ -14,11 +14,16 @@
   <script src="assets/factories/friendsFactory.js" charset="utf-8"></script>
   <script src="assets/controllers/newController.js" charset="utf-8"></script>
   <script src="assets/controllers/editController.js" charset="utf-8"></script>
+  <style>
+    .nav a{
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-  <div ng-app="app">
-    <h1>Welcome</h1>
+  <div class="nav container" ng-app="app">
     <a href="#!/">Dashboard</a> | <a href="#!/products">Products</a> | <a href="#!/orders">Orders</a> | <a href="#!/customers">Customers</a> | <a href="#!/">Settings</a> 
+    <br><br>
     <div ng-view=""></div>
     <!-- <div class="btn btn-success">bootstraptest</div> -->
   </div>
