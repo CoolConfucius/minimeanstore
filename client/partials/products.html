@@ -1,0 +1,47 @@
+<div class="container" ng-controller = "productsController">
+  <div class="row">
+    <div class="col-md-3">
+      <input type="search" placeholder="search">
+      <br><button>Filter</button><br>
+      <h3>Add a new product</h3>      
+      <form name="productForm">
+        Name: <br><input type="text" name='name' ng-model="newproduct.name" ng-minlength="1" required>
+        Image (url): <br><input type="url" name='url' ng-model="newproduct.url" ng-minlength="1" required>
+        Description: <br>
+        <textarea name="description" id="" cols="30" rows="10" ng-model="newproduct.description"></textarea>
+        Initial Quanity: <br><input type="number" name='quanity' ng-model="newproduct.url" ng-min="1" required>
+        <button class="btn-primary" ng-click="addproduct()" ng-disabled="productForm.name.$invalid">Create</button>
+      </form>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-2" ng-repeat="product in products track by $index">          
+          <img src="http://placehold.it/100x100">
+          <p>{{product.name}}</p>
+          <p>({{product.quanity}} left)</p>
+        </div>
+      </div>
+      <div class="row" style="text-align:center"><a href="">show more...</a></div>
+    </div>
+
+  </div>
+
+  <!-- <table ng-show="friends.length > 0">
+    <thead>
+      <th>#</th>
+      <th>Name</th>
+      <th>Show</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="friend in friends track by $index">
+        <td>{{$index}}</td>
+        <td>{{friend.firstname}} {{friend.lastname}}</td>
+        <td><button ng-click="showfriend($index)">show</button></td>
+        <td><button ng-click="editfriend($index)">edit</button></td>
+        <td><button ng-click="deletefriend($index)">delete</button></td>
+      </tr>
+    </tbody>
+  </table> -->
+</div>
