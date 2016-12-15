@@ -1,4 +1,4 @@
-console.log('Maste Factory');
+console.log('Master Factory');
 
 app.factory('customersFactory', ['$http', function($http){
   var customers = []; 
@@ -7,8 +7,9 @@ app.factory('customersFactory', ['$http', function($http){
     var _this = this;
     this.create = function(newcustomer,callback){
       $http.post('/customers', newcustomer).then(function(returned_data){
+        console.log("returned_data: ", returned_data.data);
         if (typeof(callback) == 'function'){
-          callback();
+          callback(returned_data.data);
         }
       });
     };

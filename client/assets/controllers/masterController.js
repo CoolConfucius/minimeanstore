@@ -2,31 +2,18 @@ console.log("masterController");
 
 var app = angular.module('app');
 
-app.controller('customersController', ['$scope', '$location', function($scope, $location){
+app.controller('customersController', ['$scope', '$location', 'customersFactory', function($scope, $location, customersFactory){
   console.log("customersController");
   $scope.newcustomer = {};
-  $scope.customers = [
-    {
-      name: "Michael Choi"
-    },
-    {
-      name: "Michael Choi"
-    },
-    {
-      name: "Michael Choi"
-    },
-    {
-      name: "Michael Choi"
-    }
-  ];
+  $scope.customers = [];
 
   customersFactory.index(function(data){
     $scope.customers = data; 
   })
   $scope.addcustomer = function(){
     console.log("addcustomer");
-    customersFactory.create($scope.newcustomer, function(){
-      // $scope.customers.push($scope.newcustomer);
+    customersFactory.create($scope.newcustomer, function(newcustomer){
+      $scope.customers.push(newcustomer);
       $scope.newcustomer = {}
     })
   }

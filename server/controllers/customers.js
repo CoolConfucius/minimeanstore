@@ -14,13 +14,14 @@ function CustomersController(){
     var customer = new Customer({
       name: req.body.name
     });
-    customer.save(function(err){
+    customer.save(function(err, customer){
       if(err){
         console.log(err);
-        console.log('create method saving customer');;
+        console.log('create method saving customer');
       } else {
         console.log('successfully added a customer!');
-        res.redirect('/');
+        console.log(customer);
+        res.json(customer);
       }
     })
   };
