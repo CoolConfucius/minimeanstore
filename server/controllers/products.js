@@ -47,7 +47,6 @@ function ProductsController(){
         console.log('something went wrong. in delete in products.js');
       } else { 
         console.log('successfully removed a product!');
-        // res.redirect('/');
         res.end(); 
       }
     })

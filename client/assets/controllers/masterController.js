@@ -66,6 +66,7 @@ app.controller('ordersController', ['$scope', '$location', 'customersFactory', '
   })
   productsFactory.index(function(data){
     $scope.products = data; 
+    $scope.currentproduct = data[0]; 
   })
 
   $scope.orders = []; 
@@ -73,6 +74,22 @@ app.controller('ordersController', ['$scope', '$location', 'customersFactory', '
   ordersFactory.index(function(data){
     $scope.orders = data; 
   })
+
+  $scope.currentmax; 
+  $scope.change = function(index){
+    console.log($scope.neworder.product);
+    for (var i = $scope.products.length - 1; i >= 0; i--) {
+      if ($scope.products[i]._id === $scope.neworder.product) {
+        $scope.currentmax = $scope.products[i].quantity;
+        console.log($scope.currentmax);
+        return;
+      }
+    };
+  }
+
+  $scope.scope = function(){
+    console.log();
+  }
 
   $scope.addorder = function(){
     console.log("addorder ", $scope.neworder);
