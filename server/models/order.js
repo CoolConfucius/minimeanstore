@@ -6,9 +6,9 @@ var Schema = mongoose.Schema;
 var OrderSchema = new mongoose.Schema({
   _customer: {type: Schema.Types.ObjectId, ref: 'Customer'}, 
   _product: {type: Schema.Types.ObjectId, ref: 'Product'},
-  customer: String,
-  product: String,
-  quantity: Number
+  customer: {type: String, required: true},
+  product: {type: String, required: true},
+  quantity: {type: Number, required: true}
 }, {timestamps: true})
 
 var Order = mongoose.model('Order', OrderSchema);

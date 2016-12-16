@@ -18,6 +18,11 @@ function OrdersController(){
     Customer.findOne({_id: req.body.customer}, function(err, customer){
       if (err || !customer) { console.log("customer find one err or not found, ", err);}
       console.log("customer : ", customer);
+
+        
+      
+
+      // Product.findOneAndUpdate({_id: req.params.id}, { $inc: {quantity: -req.body.quantity} }, function(err, product){
       Product.findOne({_id: req.body.product}, function(err, product){
         if (err || !product) { console.log("product find one err or not found, ", err);}
         console.log("product : ", product);
@@ -36,8 +41,20 @@ function OrdersController(){
           } else {
             console.log('successfully added a order!');
             
+            product.quantity = product.quantity - order.quantity; 
             console.log(order);
-            res.json(order);
+            product.save(function(err, product){
+              if(err){
+                console.log(err);
+                console.log('create method saving product');
+              } else {
+                console.log('successfully saved a product!');
+                console.log(product);
+                
+                res.json(order);
+              }
+            })            
+            // res.json(order);
           }
         })
 
