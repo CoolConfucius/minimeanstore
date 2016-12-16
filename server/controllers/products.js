@@ -48,6 +48,7 @@ function ProductsController(){
       } else { 
         console.log('successfully removed a product!');
         res.end(); 
+        // res.json({success: true})
       }
     })
 

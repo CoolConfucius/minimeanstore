@@ -1,8 +1,8 @@
 <div class="container" ng-controller = "productsController">
   <div class="row">
     <div class="col-md-3">
-      <input type="search" placeholder="search...">
-      <br><button>Filter</button><br>
+      <input type="search" placeholder="search..." ng-model="filtername">
+      <br><button ng-click="filtertoggle()">Filter</button><br>
       <h3>Add a new product</h3>      
       <form name="productForm">
         Name: <br><input type="text" name='name' placeholder="name..." ng-model="newproduct.name" ng-minlength="1" required>
@@ -16,7 +16,7 @@
     <div class="col-md-9">
       <div class="row" ng-show="products.length > 0">
           <!-- {{products}} -->
-        <div class="col-md-2" ng-repeat="product in products track by $index">          
+        <div class="col-md-2" ng-repeat="product in products | filter : (!disableFilter || '') && filtername track by $index">          
           <img ng-src="{{product.imageurl}}">
           <p>{{product.name}}</p>
           <p>({{product.quantity}} left)</p>

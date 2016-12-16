@@ -21,4 +21,9 @@ module.exports = function(app){
   app.post('/orders', orders.create)
   app.put('/orders/:id', orders.update)
   app.delete('/orders/:id', orders.delete)
+
+  // app.get('/url', function(req, res) {
+  //   console.log('REACHED /url ROUTE');
+  //   model.method(req, res);
+  // })
 }

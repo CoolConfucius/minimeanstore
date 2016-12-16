@@ -55,6 +55,10 @@ app.controller('productsController', ['$scope', '$location', 'productsFactory', 
     })
   }
 
+  $scope.disableFilter = true; 
+  $scope.filtertoggle = function(){
+    $scope.disableFilter = !$scope.disableFilter; 
+  }
 }])
 
 app.controller('ordersController', ['$scope', '$location', 'customersFactory', 'productsFactory', 'ordersFactory', function($scope, $location, customersFactory, productsFactory, ordersFactory){

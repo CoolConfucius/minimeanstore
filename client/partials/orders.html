@@ -12,9 +12,8 @@
     </select>
     <br>
     <button class="btn-primary" ng-click="addorder()">Order</button>
-    <button class="btn-primary" ng-click="scope()">Scope</button>
   </form>
-  <input type="search" placeholder="filter...">
+  <input type="search" placeholder="filter..." ng-model='filtername'>
   <!-- {{orders}} -->
   <table ng-show="orders.length > 0">
     <thead>
@@ -25,7 +24,7 @@
       <th>Date</th>
     </thead>
     <tbody>
-      <tr ng-repeat="order in orders track by $index">
+      <tr ng-repeat="order in orders | filter : filtername track by $index">
         <td>{{$index}}</td>
         <td>{{order.customer}}</td>
         <td>{{order.product}}</td>

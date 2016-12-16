@@ -19,10 +19,7 @@ function OrdersController(){
       if (err || !customer) { console.log("customer find one err or not found, ", err);}
       console.log("customer : ", customer);
 
-        
-      
-
-      // Product.findOneAndUpdate({_id: req.params.id}, { $inc: {quantity: -req.body.quantity} }, function(err, product){
+ 
       Product.findOne({_id: req.body.product}, function(err, product){
         if (err || !product) { console.log("product find one err or not found, ", err);}
         console.log("product : ", product);
@@ -42,6 +39,13 @@ function OrdersController(){
             console.log('successfully added a order!');
             
             product.quantity = product.quantity - order.quantity; 
+
+            if (product.quantity < 0) {
+              console.log("Negative quantity! There's an error!, ", product.quantity);
+            }
+            if (product.quantity === 0) {};
+
+
             console.log(order);
             product.save(function(err, product){
               if(err){
