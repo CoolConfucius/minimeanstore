@@ -16,5 +16,3 @@ require('./server/config/routes.js')(app);
 app.listen(port, function(){
   console.log(`minimeanstore server running on port ${ port }`);
 })
-
-// testt
